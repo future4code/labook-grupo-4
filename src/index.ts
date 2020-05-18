@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/users/", userRouter);
 
 async function main():Promise<void>{
-  app.use("/users/", userRouter);
+  app.use("/user", userRouter);
 }
 main()
 

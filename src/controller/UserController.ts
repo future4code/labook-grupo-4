@@ -6,7 +6,7 @@ export class UserController{
     
     signup(req: Request, res: Response){
         try{
-          const id = String(new IdGenerator().createID)
+          const id= new IdGenerator().createID()
           
           console.log(id, req.body.name, req.body.email, req.body.password)
 
