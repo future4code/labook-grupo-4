@@ -13,7 +13,7 @@ export class UserDatabase extends BaseDataBase {
       .select("*")
       .from(UserDatabase.USER_TABLE_NAME)
       .where({ email })
-
+    
     return user[0]
   }
 }
