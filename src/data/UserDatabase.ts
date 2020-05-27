@@ -8,4 +8,12 @@ export class UserDatabase extends BaseDataBase {
     return await super.getConnection().raw(`INSERT INTO ${UserDatabase.USER_TABLE_NAME} (id, name, email, password)
         VALUES ('${id}', '${name}', '${email}', '${password}')`);
   }
+  public async getUserByEmail(email: string): Promise<any> {
+    const user = await super.getConnection()
+      .select("*")
+      .from(UserDatabase.USER_TABLE_NAME)
+      .where({ email })
+
+    return user[0]
+  }
 }

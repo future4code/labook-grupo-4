@@ -6,29 +6,27 @@ export class UserController {
 
   signup(req: Request, res: Response) {
     try {
-          console.log(req.body.name, req.body.email, req.body.password)
-
       new UserBusiness().signup(req.body.name, req.body.email, req.body.password)
         .then((result) => {
-          res.status(200).send({token: new Authenticator().generateToken({id: result.id})});
+          res.status(200).send({ token: new Authenticator().generateToken({ id: result.id }) });
         })
     } catch (err) {
       res.status(400).send({ err: err });
     }
   }
-//   login = async (req: Request, res: Response) => {
-//     try {
+  public async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body
 
-//       if (!req.body.email || !req.body.password) {
-//         throw new Error(" Invalid email or password")
-//       }
-//       new UserBusiness().login(req.body.email, req.body.password)
-//         .then((result) => {
-//           //res.status(200).send({ message: "Usuário logado com sucesso" });
-//         })
-//     } catch (err) {
-//       res.status(400).send({ err: err });
+      const userBusiness = new UserBusiness()
+      const logged = await userBusiness.login(email, password)
 
-//     }
-//   }
+      const authenticator = new Authenticator()
+      const token = authenticator.generateToken({ id: logged.id })
+
+      res.status(200).send({ token })
+    } catch (err) {
+      res.status(400).send({ message: err.message })
+    }
+  }
 }
