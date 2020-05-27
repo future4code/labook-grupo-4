@@ -6,14 +6,18 @@ import knex from "knex";
 import { v4 } from "uuid";
 import { UserController } from "./controller/UserController";
 import { userRouter } from "./routes/UserRouter";
+import { feedRouter } from "./routes/FeedRouter";
+import {followRouter} from "./routes/FollowRouter";
 
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use("/users/", userRouter);
+
 
 async function main():Promise<void>{
   app.use("/users", userRouter);
+  app.use("/user", feedRouter);
+  app.use("/friends", followRouter);
 }
 main()
 
