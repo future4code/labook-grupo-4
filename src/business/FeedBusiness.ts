@@ -12,4 +12,7 @@ export class FeedBusiness{
     ) {
         return new FeedDatabase().createPost(id, photo, description, created_date, type, user_id);
     }
+    public async getAllPost(id: string,idFriends:[])  {
+        return new FeedDatabase().getAllPost(id,idFriends);
+    }
 }

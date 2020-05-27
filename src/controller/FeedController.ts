@@ -2,6 +2,8 @@ import {Request, Response} from "express";
 import { IdGenerator } from "../services/IdGenerator";
 import { Authenticator } from "../services/Authenticator";
 import { FeedBusiness } from "../business/FeedBusiness";
+import {UserDatabase} from "../data/UserDatabase";
+import {FollowBusiness} from "../business/FollowBusiness";
 
 export class FeedController {
 
@@ -16,6 +18,16 @@ export class FeedController {
             res.status(200).send({ message: "Post criado com sucesso"});
 
         } catch (err) {
+            res.status(400).send({ err: err.message })
+        }
+    }
+    getPost(req: Request, res: Response){
+        try{
+            const id = new Authenticator().verifyToken(req.headers.authorization as string).id
+            const friends = new FollowBusiness().getFriend(id)
+
+            res.status(200).send({friends});
+        }catch (err) {
             res.status(400).send({ err: err.message })
         }
     }
