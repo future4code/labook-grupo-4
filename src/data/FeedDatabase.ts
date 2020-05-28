@@ -1,4 +1,4 @@
-import {BaseDataBase} from "./BaseDatabase";
+import { BaseDataBase } from "./BaseDatabase";
 
 export class FeedDatabase extends BaseDataBase {
     private static USER_TABLE_NAME = "posts_labook";
@@ -26,29 +26,20 @@ export class FeedDatabase extends BaseDataBase {
 
         feed.push(await super.getConnection().raw(`SELECT * FROM ${FeedDatabase.USER_TABLE_NAME} 
         WHERE id_user = "${idUser}"`))
-        const feedFriends: any =[]
-        const ids = ["41a0618d-167e-4c23-8720-b1f658c36fff","380e8bfa-913c-4a4a-8a9d-4dfede8195cf"]
 
-        for (let i = 0; i < ids.length; i++) {
-            console.log(idFriends[i])
+        const feedFriends: any = [];
+
+
+        for (let i = 0; i < idFriends.length; i++) {
             let buffer = await super.getConnection().raw(`SELECT * FROM ${FeedDatabase.USER_TABLE_NAME} 
-        WHERE id_user = "${ids[i]}" `);
-            if (buffer.length > 0) {
+        WHERE id_user = "${idFriends[i]}" `);
+
+            if (buffer[i].length > 0) {
                 feedFriends.push(buffer)
             }
         }
-
-        const feedFormated: any = []
-        for(let i = 0; i < feed.length; i++) {
-
-            feedFormated.push(feed[0][i])
-        }
-        for(let i = 0; i < feed.length; i++) {
-
-            feedFormated.push(feedFriends[0][i])
-        }
-
-        return feedFormated;
+        
+        return feed[0][0].concat(feedFriends[0][0]);
 
     }
 
