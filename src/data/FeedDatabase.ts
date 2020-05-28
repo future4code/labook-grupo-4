@@ -23,6 +23,10 @@ export class FeedDatabase extends BaseDataBase {
         idFriends: string[],
     ): Promise<any> {
         const feed: any = []
+        feed.push(await super.getConnection().select("*")
+            .from(FeedDatabase.USER_TABLE_NAME)
+            .where({id_user: idUser}))
+        const feedFriends: any = []
 
         feed.push(await super.getConnection().raw(`SELECT * FROM ${FeedDatabase.USER_TABLE_NAME} 
         WHERE id_user = "${idUser}"`))
