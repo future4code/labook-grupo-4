@@ -13,4 +13,5 @@ export class FollowBusiness{
     public async getFriend(id: string){
         return  await new FollowDatabase().getAllFriends(id)
     }
+
 }
