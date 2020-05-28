@@ -15,11 +15,18 @@ export class FollowDatabase extends BaseDataBase{
     }
 ​
     public async getAllFriends(
-        id: string,
+        user_id: string,
     ): Promise<any> {
-        const friends = await this.getConnection().raw(`SELECT user_to_follow_id FROM ${FollowDatabase.USER_TABLE_NAME} 
-        WHERE user_id = ${id}`);
-        console.log(friends);
+        const buffer = await this.getConnection().select("user_to_follow_id")
+            .from(FollowDatabase.USER_TABLE_NAME)
+            .where({user_id})
+
+        let friends: any = []
+        if(buffer.length > 0){
+            friends = buffer.map(item =>{
+                return item.user_to_follow_id;
+            })
+        }
         return friends
     }
 }
