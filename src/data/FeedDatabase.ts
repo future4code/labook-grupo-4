@@ -23,32 +23,26 @@ export class FeedDatabase extends BaseDataBase {
         idFriends: string[],
     ): Promise<any> {
         const feed: any = []
+        feed.push(await super.getConnection().select("*")
+            .from(FeedDatabase.USER_TABLE_NAME)
+            .where({id_user: idUser}))
+        const feedFriends: any = []
 
-        feed.push(await super.getConnection().raw(`SELECT * FROM ${FeedDatabase.USER_TABLE_NAME} 
-        WHERE id_user = "${idUser}"`))
-        const feedFriends: any =[]
-        const ids = ["41a0618d-167e-4c23-8720-b1f658c36fff","380e8bfa-913c-4a4a-8a9d-4dfede8195cf"]
 
-        for (let i = 0; i < ids.length; i++) {
-            console.log(idFriends[i])
-            let buffer = await super.getConnection().raw(`SELECT * FROM ${FeedDatabase.USER_TABLE_NAME} 
-        WHERE id_user = "${ids[i]}" `);
-            if (buffer.length > 0) {
-                feedFriends.push(buffer)
+        for (let i = 0; i < idFriends.length; i++) {
+            feedFriends.push(await super.getConnection().select("*")
+                .from(FeedDatabase.USER_TABLE_NAME)
+                .where({id_user: idFriends[i]}))
+
+        }
+
+        for(let i = 0; i < feedFriends.length; i++){
+            for(let j = 0; j < feedFriends[i].length; j++){
+                feed[0].push(feedFriends[i][j])
             }
         }
 
-        const feedFormated: any = []
-        for(let i = 0; i < feed.length; i++) {
-
-            feedFormated.push(feed[0][i])
-        }
-        for(let i = 0; i < feed.length; i++) {
-
-            feedFormated.push(feedFriends[0][i])
-        }
-
-        return feedFormated;
+        return feed;
 
     }
 
