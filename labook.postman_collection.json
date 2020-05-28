@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"dennis\",\n\t\"email\":\"dennis@gmail.com\", \n\t\"password\":\"123456\"\n}",
+					"raw": "{\n\t\"name\":\"cloronildo\",\n\t\"email\":\"cloronildo@gmail.com\", \n\t\"password\":\"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -70,13 +70,13 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MDQ0MjA3LWZiMWEtNDZjYy05MDdhLTc1YThhYjkyNDQwZiIsImlhdCI6MTU5MDYwMTMxMywiZXhwIjoxNTkwNjAzMTEzfQ.yFInsXut-ks6AIOyZ0gScfQWT0cruKJizWvmpBTQw1U",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1NmYxMGVlLWQ5ZjQtNGE0ZC05ZDkxLWNhYWI5NzUxM2Y5ZSIsImlhdCI6MTU5MDY5ODQwOCwiZXhwIjoxNTkwNzAwMjA4fQ.UoMSjtH-Bn2zBsGbhTWXw9sfAegdPcQwRAioVvIApi0",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"photo\":\"selfie\", \n\t\"descripition\":\"bunitaum\", \n\t\"createdData\":\"20/02/2020\", \n\t\"type\":\"normal\"\n}",
+					"raw": "{\n\t\"photo\":\"selfie teste\", \n\t\"descripition\":\"bunitaum\", \n\t\"createdData\":\"20/02/2020\", \n\t\"type\":\"admin\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -100,15 +100,12 @@
 		},
 		{
 			"name": "getPost",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MDQ0MjA3LWZiMWEtNDZjYy05MDdhLTc1YThhYjkyNDQwZiIsImlhdCI6MTU5MDYwNzMzNywiZXhwIjoxNTkwNjA5MTM3fQ.bmkp3HbEMqNWm3ZX6dXLcbqbN5FUUEhDixDlfRwugEg",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTRjZGMzLThiZjYtNGZmNi1iMzcxLWViNjNkMGFjNGFiOCIsImlhdCI6MTU5MDY5ODUxMCwiZXhwIjoxNTkwNzAwMzEwfQ.8fk8pkstLBPJhyWiYPKksFDnPwwyP79e5XpkauuLYoI",
 						"type": "text"
 					},
 					{
@@ -118,15 +115,6 @@
 						"disabled": true
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:3000/user/get-post",
 					"protocol": "http",
@@ -145,10 +133,34 @@
 		{
 			"name": "followUser",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTRjZGMzLThiZjYtNGZmNi1iMzcxLWViNjNkMGFjNGFiOCIsImlhdCI6MTU5MDY5ODUxMCwiZXhwIjoxNTkwNzAwMzEwfQ.8fk8pkstLBPJhyWiYPKksFDnPwwyP79e5XpkauuLYoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userToFollowId\":\"056f10ee-d9f4-4a4d-9d91-caab97513f9e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/friends/follow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"friends",
+						"follow"
+					]
 				}
 			},
 			"response": []
