@@ -1,5 +1,4 @@
 import { BaseDataBase } from "./BaseDatabase";
-import { v4 } from "uuid";
 
 export class UserDatabase extends BaseDataBase {
   private static USER_TABLE_NAME = "user_labook"
