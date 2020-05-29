@@ -5,4 +5,4 @@ import { FollowController } from "../controller/FollowController";
 export const followRouter = express.Router();
 
 followRouter.post("/follow", new FollowController().followUser);
-followRouter.post("/unfollow", new FollowController().unfollowUser);
+followRouter.delete("/unfollow", new FollowController().unfollowUser);

@@ -1,4 +1,5 @@
 import {BaseDataBase} from "./BaseDatabase";
+import moment from "moment";
 
 export class FeedDatabase extends BaseDataBase {
     private static USER_TABLE_NAME = "posts_labook";
@@ -39,6 +40,10 @@ export class FeedDatabase extends BaseDataBase {
                 feed[0].push(feedFriends[i][j])
             }
         }
+        feed[0].sort(function (a,b) {
+            return moment(a.created_date).unix() - moment(b.created_date).unix()
+        })
+        console.log(feed[0])
         return feed;
 
     }
@@ -66,6 +71,10 @@ export class FeedDatabase extends BaseDataBase {
             }
         }
 
+        feed[0].sort(function (a,b) {
+            return moment(a.created_date).unix() - moment(b.created_date).unix()
+        })
+        console.log(feed[0])
         return feed;
 
     }
