@@ -16,7 +16,7 @@ app.use(express.json());
 
 async function main():Promise<void>{
   app.use("/users", userRouter);
-  app.use("/user", feedRouter);
+  app.use("/feed", feedRouter);
   app.use("/friends", followRouter);
 }
 main()

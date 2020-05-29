@@ -17,4 +17,7 @@ export class FeedBusiness{
     public async getAllPost(id: string,idFriends:[])  {
         return new FeedDatabase().getAllPost(id,idFriends);
     }
+    public async getAllPostByFilter(id: string,idFriends:[], type: string) {
+        return new FeedDatabase().getAllPostByFilter(id,idFriends,type);
+    }
 }
