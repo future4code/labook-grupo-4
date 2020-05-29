@@ -28,16 +28,40 @@ export class FeedDatabase extends BaseDataBase {
             .where({id_user: idUser}))
         const feedFriends: any = []
 
-
         for (let i = 0; i < idFriends.length; i++) {
             feedFriends.push(await super.getConnection().select("*")
                 .from(FeedDatabase.USER_TABLE_NAME)
                 .where({id_user: idFriends[i]}))
-
         }
 
-        for(let i = 0; i < feedFriends.length; i++){
-            for(let j = 0; j < feedFriends[i].length; j++){
+        for (let i = 0; i < feedFriends.length; i++) {
+            for (let j = 0; j < feedFriends[i].length; j++) {
+                feed[0].push(feedFriends[i][j])
+            }
+        }
+        return feed;
+
+    }
+
+    public async getAllPostByFilter(
+        idUser: string,
+        idFriends: string[],
+        type: string,
+    ): Promise<any> {
+        const feed: any = []
+        feed.push(await super.getConnection().select("*")
+            .from(FeedDatabase.USER_TABLE_NAME)
+            .where({id_user: idUser, type: type}))
+        const feedFriends: any = []
+
+        for (let i = 0; i < idFriends.length; i++) {
+            feedFriends.push(await super.getConnection().select("*")
+                .from(FeedDatabase.USER_TABLE_NAME)
+                .where({id_user: idFriends[i], type: type}))
+        }
+
+        for (let i = 0; i < feedFriends.length; i++) {
+            for (let j = 0; j < feedFriends[i].length; j++) {
                 feed[0].push(feedFriends[i][j])
             }
         }
