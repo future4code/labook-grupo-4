@@ -43,7 +43,6 @@ export class FeedDatabase extends BaseDataBase {
         feed[0].sort(function (a,b) {
             return moment(a.created_date).unix() - moment(b.created_date).unix()
         })
-        console.log(feed[0])
         return feed;
 
     }
@@ -74,7 +73,6 @@ export class FeedDatabase extends BaseDataBase {
         feed[0].sort(function (a,b) {
             return moment(a.created_date).unix() - moment(b.created_date).unix()
         })
-        console.log(feed[0])
         return feed;
 
     }
