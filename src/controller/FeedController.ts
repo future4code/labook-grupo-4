@@ -37,6 +37,12 @@ export class FeedController {
 
     async getPostByFilter(req: Request, res: Response) {
         try {
+            if (req.body.type === "normal"|| req.body.type === "evento") {
+                throw new Error("Informe se o tipo do post é normal ou evento")
+            }
+            if (req.body.type === "") {
+                throw new Error("Informe pelo menos um tipo de post")
+            }
             const id = new Authenticator().verifyToken(req.headers.authorization as string).id
             const friends = await new FollowBusiness().getFriend(id)
             const post = await new FeedBusiness().getAllPostByFilter(id, friends, req.body.type)
