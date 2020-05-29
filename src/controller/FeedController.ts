@@ -4,6 +4,7 @@ import { Authenticator } from "../services/Authenticator";
 import { FeedBusiness } from "../business/FeedBusiness";
 import {UserDatabase} from "../data/UserDatabase";
 import {FollowBusiness} from "../business/FollowBusiness";
+import moment from 'moment';
 
 export class FeedController {
 
@@ -13,7 +14,9 @@ export class FeedController {
 
             const userId = new Authenticator().verifyToken(req.headers.authorization as string).id;
 
-            await new FeedBusiness().createPost(id, req.body.photo, req.body.descripition, req.body.createdData, req.body.type, userId);
+            const date = moment().format("YYYY-MM-DD");
+
+            await new FeedBusiness().createPost(id, req.body.photo, req.body.descripition, date, req.body.type, userId);
 
             res.status(200).send({ message: "Post criado com sucesso"});
 
