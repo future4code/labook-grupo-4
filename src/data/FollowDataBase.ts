@@ -33,9 +33,18 @@ export class FollowDatabase extends BaseDataBase{
     public async unfollowUser(
         userId: string,
         userToFollowId: string
-    ): Promise<void> {
+    ): Promise<boolean> {
+      const friendExist = await this.getConnection().raw(`SELECT * FROM ${FollowDatabase.USER_TABLE_NAME}
+      WHERE user_id = '${userId}' AND user_to_follow_id = '${userToFollowId}'`);
+      if(friendExist.length > 0){
         await this.getConnection().raw(`DELETE FROM ${FollowDatabase.USER_TABLE_NAME}
-            WHERE user_id = '${userId}' AND user_to_follow_id = '${userToFollowId}'`);
+        WHERE user_id = '${userId}' AND user_to_follow_id = '${userToFollowId}'`);
+        return true
+      }else {
+        return false
+      }
+      
+        
     }
 
 }
