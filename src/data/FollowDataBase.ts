@@ -29,4 +29,13 @@ export class FollowDatabase extends BaseDataBase{
         }
         return friends
     }
+
+    public async unfollowUser(
+        userId: string,
+        userToFollowId: string
+    ): Promise<void> {
+        await this.getConnection().raw(`DELETE FROM ${FollowDatabase.USER_TABLE_NAME}
+            WHERE user_id = '${userId}' AND user_to_follow_id = '${userToFollowId}'`);
+    }
+
 }

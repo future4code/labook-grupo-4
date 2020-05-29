@@ -14,4 +14,12 @@ export class FollowBusiness{
         return  await new FollowDatabase().getAllFriends(id)
     }
 
+    public async unfollowUser(
+        
+        userId: string,
+        userToFollowId: string
+    ) {
+        return await new FollowDatabase().unfollowUser(userId, userToFollowId);
+    }
+
 }
