@@ -31,4 +31,29 @@ export class FollowController {
             res.status(400).send({err: err.message})
         }
     }
+
+    unfollowUser(req: Request, res: Response) {
+        try {
+            const userToUnfollowId = req.body.userToUnfollowId
+​
+            if (!userToUnfollowId || userToUnfollowId === "") {
+                throw new Error("Informe o usuario desejado para fazer desfazer amizade")
+            }
+            console.log(req.body.userToUnfollowId)
+​
+            const userId = new Authenticator().verifyToken(req.headers.authorization as string).id;
+
+            console.log(req.headers.authorization)
+
+            new FollowBusiness().unfollowUser(
+                userId,
+                userToUnfollowId
+            ).then(result => {
+                res.status(200).send({message: "Stalker desfeito"})
+            })
+​
+        } catch (err) {
+            res.status(400).send({err: err.message})
+        }
+    }
 }
