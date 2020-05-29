@@ -34,15 +34,15 @@ export class FeedDatabase extends BaseDataBase {
                 .where({id_user: idFriends[i]}))
         }
 
-        for(let i = 0; i < feedFriends.length; i++){
-            for(let j = 0; j < feedFriends[i].length; j++){
+        for (let i = 0; i < feedFriends.length; i++) {
+            for (let j = 0; j < feedFriends[i].length; j++) {
                 feed[0].push(feedFriends[i][j])
             }
         }
-
         return feed;
 
     }
+
     public async getAllPostByFilter(
         idUser: string,
         idFriends: string[],
@@ -60,8 +60,8 @@ export class FeedDatabase extends BaseDataBase {
                 .where({id_user: idFriends[i], type: type}))
         }
 
-        for(let i = 0; i < feedFriends.length; i++){
-            for(let j = 0; j < feedFriends[i].length; j++){
+        for (let i = 0; i < feedFriends.length; i++) {
+            for (let j = 0; j < feedFriends[i].length; j++) {
                 feed[0].push(feedFriends[i][j])
             }
         }

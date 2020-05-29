@@ -3,6 +3,7 @@ import {IdGenerator} from "../services/IdGenerator";
 import {Authenticator} from "../services/Authenticator";
 import {FeedBusiness} from "../business/FeedBusiness";
 import {FollowBusiness} from "../business/FollowBusiness";
+import moment from "moment";
 
 export class FeedController {
 
@@ -10,7 +11,8 @@ export class FeedController {
         try {
             const id = new IdGenerator().createID()
             const userId = new Authenticator().verifyToken(req.headers.authorization as string).id;
-            await new FeedBusiness().createPost(id, req.body.photo, req.body.descripition, req.body.createdData, req.body.type, userId);
+            const date = moment().format("YYYY-MM-DD");
+            await new FeedBusiness().createPost(id, req.body.photo, req.body.descripition, date, req.body.type, userId);
             res.status(200).send({message: "Post criado com sucesso"});
 
         } catch (err) {
@@ -23,6 +25,10 @@ export class FeedController {
             const id = new Authenticator().verifyToken(req.headers.authorization as string).id
             const friends = await new FollowBusiness().getFriend(id)
             const post = await new FeedBusiness().getAllPost(id, friends)
+            for(let i = 0; i < post[0].length; i++){
+                const formatedDate = moment(post[0][i].created_date,"YYYY-MM-DD").format("DD/MM/YYYY")
+                post[0][i].created_date = formatedDate
+            }
             res.status(200).send({post});
         } catch (err) {
             res.status(400).send({err: err.message})
@@ -34,6 +40,10 @@ export class FeedController {
             const id = new Authenticator().verifyToken(req.headers.authorization as string).id
             const friends = await new FollowBusiness().getFriend(id)
             const post = await new FeedBusiness().getAllPostByFilter(id, friends, req.body.type)
+            for(let i = 0; i < post[0].length; i++){
+                const formatedDate = moment(post[0][i].created_date,"YYYY-MM-DD").format("DD/MM/YYYY")
+                post[0][i].created_date = formatedDate
+            }
             res.status(200).send({post});
         } catch (err) {
             res.status(400).send({err: err.message})
