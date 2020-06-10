@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "3d645f62-bcf8-4db7-b3b6-b8a99786a541",
+		"name": "labook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"cloronildo\",\n\t\"email\":\"cloronildo@gmail.com\", \n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"dennis@gmail.com\", \n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPost",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1NmYxMGVlLWQ5ZjQtNGE0ZC05ZDkxLWNhYWI5NzUxM2Y5ZSIsImlhdCI6MTU5MDY5ODQwOCwiZXhwIjoxNTkwNzAwMjA4fQ.UoMSjtH-Bn2zBsGbhTWXw9sfAegdPcQwRAioVvIApi0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"photo\":\"selfie teste\", \n\t\"descripition\":\"bunitaum\", \n\t\"createdData\":\"20/02/2020\", \n\t\"type\":\"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/create-post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"create-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPost",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTRjZGMzLThiZjYtNGZmNi1iMzcxLWViNjNkMGFjNGFiOCIsImlhdCI6MTU5MDc2NTY4OCwiZXhwIjoxNTkwNzY3NDg4fQ.Yqw0s1-_sSHLKpjrgUKxLXT21LRdXf5o8ZLu4ABpDqg",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/feed/get-post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feed",
+						"get-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "followUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTRjZGMzLThiZjYtNGZmNi1iMzcxLWViNjNkMGFjNGFiOCIsImlhdCI6MTU5MDY5ODUxMCwiZXhwIjoxNTkwNzAwMzEwfQ.8fk8pkstLBPJhyWiYPKksFDnPwwyP79e5XpkauuLYoI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userToFollowId\":\"056f10ee-d9f4-4a4d-9d91-caab97513f9e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/friends/follow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"friends",
+						"follow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostByFilter",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTRjZGMzLThiZjYtNGZmNi1iMzcxLWViNjNkMGFjNGFiOCIsImlhdCI6MTU5MDc2NTY4OCwiZXhwIjoxNTkwNzY3NDg4fQ.Yqw0s1-_sSHLKpjrgUKxLXT21LRdXf5o8ZLu4ABpDqg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\":\"normal\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/feed/get-post-by-filter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feed",
+						"get-post-by-filter"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
